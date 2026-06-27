@@ -24,4 +24,12 @@ class PointTest {
         assertThat(result).isCloseTo(expected, offset(0.001));
     }
 
+    @Test
+    public void when555and101010Then866() {
+        Point a = new Point(5, 5, 5);
+        Point b = new Point(10, 10, 10);
+        double result = a.distance3d(b);
+        double expected = 8.66;
+        assertThat(result).isCloseTo(expected, offset(0.001));
+    }
 }
