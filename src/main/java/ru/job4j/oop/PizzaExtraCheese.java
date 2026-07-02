@@ -1,9 +1,9 @@
 package ru.job4j.oop;
 
 public class PizzaExtraCheese extends Pizza {
-    private static final String name = " + extra cheese";
+    private static final String NAME = " + extra cheese";
 
     public String name() {
-        return "Just tasty pizza" + name;
+        return "Just tasty pizza" + NAME;
     }
 }
