@@ -4,6 +4,6 @@ public class PizzaExtraCheese extends Pizza {
     private static final String NAME = " + extra cheese";
 
     public String name() {
-        return "Just tasty pizza" + NAME;
+        return super.name() + NAME;
     }
 }
