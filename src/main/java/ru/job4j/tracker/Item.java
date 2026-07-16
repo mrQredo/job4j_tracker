@@ -2,10 +2,11 @@ package ru.job4j.tracker;
 
 import java.time.LocalDateTime;
 
+//Класс Item описывает модель заявки (Модель данных)
 public class Item {
-    private int id;
-    private String name;
-    private LocalDateTime created = LocalDateTime.now();
+    private int id; //это уникальный номер заявки
+    private String name; //содержит название заявки
+    private LocalDateTime created = LocalDateTime.now(); //содержит дату создания заявки
 
     public Item() {
     }

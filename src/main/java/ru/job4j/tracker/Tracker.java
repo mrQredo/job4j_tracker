@@ -7,7 +7,7 @@ public class Tracker {
     private int ids = 1;
     private int size = 0;
 
-    //добавление заявок
+    //добавление новых заявок
     public Item add(Item item) {
         item.setId(ids++);
         items[size++] = item;
@@ -29,7 +29,7 @@ public class Tracker {
         return result;
     }
 
-    //получение списка по имени
+    //получение списка заявок по имени
     public Item[] findByName(String key) {
         Item[] result = new Item[items.length];
         int size = 0;
@@ -46,16 +46,35 @@ public class Tracker {
         return result;
     }
 
-    //получение заявки по id
+    //получение заявки по id, возврат самой заявки - item
     public Item findById(int id) {
-        Item result = null;
+        /* Находим индекс */
+        int index = indexOf(id);
+        /* Если индекс найден возвращаем item, иначе null */
+        return index != -1 ? items[index] : null;
+    }
+
+    //метод для поиска по id, с возвратом index (номер в массиве)
+    private int indexOf(int id) {
+        int result = -1;
         for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                result = item;
+            if (items[index].getId() == id) {
+                result = index;
                 break;
             }
         }
         return result;
+    }
+
+    //метод замены заявки
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id); //Найти индекс ячейки по id
+        if (index == -1) {
+            return false;
+        } else {
+            item.setId(id); //Проставить id с item. При замене нужно сохранять старый id.
+            items[index] = item; //Записать в ячейку с найденным индексом объект item. Это входящий параметр.
+            return true;
+        }
     }
 }
