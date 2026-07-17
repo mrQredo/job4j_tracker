@@ -72,4 +72,13 @@ public class Tracker {
         }
         return false;
     }
+
+    //метод удаления заявки
+    public void delete(int id) {
+        if (indexOf(id) != -1) {
+            System.arraycopy(items, indexOf(id) + 1, items, indexOf(id), items.length - indexOf(id) - 1);
+            items[size - 1] = null;
+            size--;
+        }
+    }
 }
