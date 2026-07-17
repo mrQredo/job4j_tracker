@@ -25,25 +25,21 @@ public class Tracker {
                 size++;
             }
         }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(result, size);
     }
 
     //получение списка заявок по имени
     public Item[] findByName(String key) {
-        Item[] result = new Item[items.length];
-        int size = 0;
-        for (int index = 0; index < items.length; index++) {
+        Item[] result = new Item[size];
+        int count = 0;
+        for (int index = 0; index < size; index++) {
             Item item = items[index];
-            if (item != null) {
-                if (key.equals(item.getName())) {
-                    result[size] = item;
-                    size++;
-                }
+            if (key.equals(item.getName())) {
+                    result[count] = item;
+                    count++;
             }
         }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(result, count);
     }
 
     //получение заявки по id, возврат самой заявки - item
