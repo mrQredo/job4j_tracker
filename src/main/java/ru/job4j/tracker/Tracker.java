@@ -65,12 +65,11 @@ public class Tracker {
     //метод замены заявки
     public boolean replace(int id, Item item) {
         int index = indexOf(id); //Найти индекс ячейки по id
-        if (index == -1) {
-            return false;
-        } else {
+        if (index != -1) {
             item.setId(id); //Проставить id с item. При замене нужно сохранять старый id.
             items[index] = item; //Записать в ячейку с найденным индексом объект item. Это входящий параметр.
             return true;
         }
+        return false;
     }
 }
