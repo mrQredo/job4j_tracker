@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class Item {
     private int id; //это уникальный номер заявки
     private String name; //содержит название заявки
-    private LocalDateTime created = LocalDateTime.now();//содержит дату создания заявки
+    private LocalDateTime created = LocalDateTime.now(); //содержит дату создания заявки
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     public Item() {
