@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,5 +13,8 @@ public class StartUI {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         String currentDateTimeFormat = createdDate.format(formatter);
         System.out.println("Текущие дата и время после форматирования: " + currentDateTimeFormat);
+
+        Item taskToString = new Item();
+        System.out.println(taskToString);
     }
 }
