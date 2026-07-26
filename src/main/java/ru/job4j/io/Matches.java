@@ -26,6 +26,8 @@ public class Matches {
                     case 2, 3:
                         System.out.println(player + " взял " + matches + " спички.");
                         break;
+                    default:
+                        break;
                 }
                 count = count - matches;
                 switch (count) {
@@ -37,6 +39,8 @@ public class Matches {
                         break;
                     case 5, 6, 7, 8, 9, 10, 11:
                         System.out.println("Осталось " + count + " спичек");
+                        break;
+                    default:
                         break;
                 }
             }
