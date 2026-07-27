@@ -2,46 +2,17 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
+/**
+ * Наше хранилище будет описывать класс ru.job4j.tracker.Tracker.
+ * Объект этого класса будет уметь: добавлять, заменять, искать по имени, читать все сохраненные данные.
+ */
+
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;
     private int size = 0;
 
-    //добавление новых заявок
-    public Item add(Item item) {
-        item.setId(ids++);
-        items[size++] = item;
-        return item;
-    }
-
-    //получение списка всех заявок
-    public Item[] findAll() {
-        return Arrays.copyOf(items, size);
-    }
-
-    //получение списка заявок по имени
-    public Item[] findByName(String key) {
-        Item[] result = new Item[size];
-        int count = 0;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (key.equals(item.getName())) {
-                    result[count] = item;
-                    count++;
-            }
-        }
-        return Arrays.copyOf(result, count);
-    }
-
-    //получение заявки по id, возврат самой заявки - item
-    public Item findById(int id) {
-        /* Находим индекс */
-        int index = indexOf(id);
-        /* Если индекс найден возвращаем item, иначе null */
-        return index != -1 ? items[index] : null;
-    }
-
-    //метод для поиска по id, с возвратом index (номер в массиве)
+    //Метод indexOf для поиска заявки по id, с возвратом index (номер в массиве)
     private int indexOf(int id) {
         int result = -1;
         for (int index = 0; index < size; index++) {
@@ -53,7 +24,19 @@ public class Tracker {
         return result;
     }
 
-    //метод замены заявки
+    //0. Добавить новую заявку
+    public Item add(Item item) {
+        item.setId(ids++);
+        items[size++] = item;
+        return item;
+    }
+
+    //1. Показать все заявки
+    public Item[] findAll() {
+        return Arrays.copyOf(items, size);
+    }
+
+    //2. Изменить заявку
     public boolean replace(int id, Item item) {
         int index = indexOf(id); //Найти индекс ячейки по id
         boolean result = index != -1;
@@ -64,7 +47,7 @@ public class Tracker {
         return result;
     }
 
-    //метод удаления заявки
+    //3. Удалить заявку
     public void delete(int id) {
         int index = indexOf(id);
         boolean result = index != -1;
@@ -73,5 +56,27 @@ public class Tracker {
             items[size - 1] = null;
             size--;
         }
+    }
+
+    //4. Показать заявку по id
+    public Item findById(int id) {
+        /* Находим индекс */
+        int index = indexOf(id);
+        /* Если индекс найден возвращаем item, иначе null */
+        return index != -1 ? items[index] : null;
+    }
+
+    //5. Показать заявки по имени
+    public Item[] findByName(String key) {
+        Item[] result = new Item[size];
+        int count = 0;
+        for (int index = 0; index < size; index++) {
+            Item item = items[index];
+            if (key.equals(item.getName())) {
+                    result[count] = item;
+                    count++;
+            }
+        }
+        return Arrays.copyOf(result, count);
     }
 }
