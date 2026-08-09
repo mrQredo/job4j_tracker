@@ -1,7 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
 
 /**
- * Интерфейс ru.job4j.tracker.Input, который отвечает за ввод данных от пользователя.
+ * Интерфейс ru.job4j.tracker.input.Input, который отвечает за ввод данных от пользователя.
  * Этим интерфейсом мы и будем заменять Scanner.
  */
 

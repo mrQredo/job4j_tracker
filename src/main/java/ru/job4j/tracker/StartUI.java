@@ -1,5 +1,11 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.action.*;
+import ru.job4j.tracker.input.ConsoleInput;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.output.ConsoleOutput;
+import ru.job4j.tracker.output.Output;
+
 /**
  * Следующей задачей в нашем проекте будет отображение меню - ru.job4j.tracker. StartUI.
  * Этот объект будет управлять меню. В нем будет цикл, который будет опрашивать пользователя о выбранном пункте меню.
