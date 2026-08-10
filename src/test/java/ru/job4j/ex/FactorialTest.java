@@ -23,6 +23,4 @@ class FactorialTest {
         int result = Factorial.calc(number);
         assertThat(result).isEqualTo(expected);
     }
-
-
 }
