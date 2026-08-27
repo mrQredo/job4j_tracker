@@ -1,11 +1,14 @@
 package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class ConvertList2ArrayTest {
     @Test
     public void when7ElementsThen9() {
