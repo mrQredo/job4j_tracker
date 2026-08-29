@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Наше хранилище будет описывать класс ru.job4j.tracker.Tracker.
@@ -8,15 +9,14 @@ import java.util.Arrays;
  */
 
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>(); // Список заявок: ArrayList растёт автоматически, поэтому не нужен size.
     private int ids = 1;
-    private int size = 0;
 
     //Метод indexOf для поиска заявки по id, с возвратом index (номер в массиве)
     private int indexOf(int id) {
         int result = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
                 result = index;
                 break;
             }
@@ -26,23 +26,23 @@ public class Tracker {
 
     //0. Добавить новую заявку
     public Item add(Item item) {
-        item.setId(ids++);
-        items[size++] = item;
+        item.setId(ids++); // // Присваиваем заявке новый id
+        items.add(item); // добавляет элемент в конец
         return item;
     }
 
     //1. Показать все заявки
-    public Item[] findAll() {
-        return Arrays.copyOf(items, size);
+    public List<Item> findAll() {
+        return new ArrayList<>(items); // Возвращаем копию списка
     }
 
     //2. Изменить заявку
     public boolean replace(int id, Item item) {
         int index = indexOf(id); //Найти индекс ячейки по id
-        boolean result = index != -1;
+        boolean result = index != -1; // заявка найдена?
         if (result) {
-            item.setId(id); //Проставить id с item. При замене нужно сохранять старый id.
-            items[index] = item; //Записать в ячейку с найденным индексом объект item. Это входящий параметр.
+            item.setId(id); // сохраняем старый id при замене
+            items.set(index, item); // записываем item на позицию index
         }
         return result;
     }
@@ -51,10 +51,8 @@ public class Tracker {
     public void delete(int id) {
         int index = indexOf(id);
         boolean result = index != -1;
-        if (result) {
-            System.arraycopy(items, index + 1, items, index, items.length - index - 1);
-            items[size - 1] = null;
-            size--;
+        if (index != -1) {
+            items.remove(index);   // удалить элемент по индексу, список сам сдвинет остальные
         }
     }
 
@@ -63,20 +61,17 @@ public class Tracker {
         /* Находим индекс */
         int index = indexOf(id);
         /* Если индекс найден возвращаем item, иначе null */
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
 
     //5. Показать заявки по имени
-    public Item[] findByName(String key) {
-        Item[] result = new Item[size];
-        int count = 0;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {           // перебираем все заявки списка
             if (key.equals(item.getName())) {
-                    result[count] = item;
-                    count++;
+                result.add(item);           // подходящие добавляем в результат
             }
         }
-        return Arrays.copyOf(result, count);
+        return result;
     }
 }
